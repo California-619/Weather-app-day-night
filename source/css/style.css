@@ -11,10 +11,9 @@ body {
 }
 .display-none{
   display: none !important;
-
 }
 .card {
-  background: #000000d0;
+  background: #666;
   color: white;
   padding: 2em;
   border-radius: 30px;
@@ -23,13 +22,11 @@ body {
   margin: 1em;
   transition: all 1s linear;
 }
-
 .search {
   display: flex;
   align-items: center;
   justify-content: center;
 }
-
 button {
   margin: 0.5em;
   border-radius: 50%;
@@ -37,60 +34,56 @@ button {
   height: 44px;
   width: 44px;
   outline: none;
-  background: #7c7c7c2b;
+  background-color: #222;
   color: white;
   cursor: pointer;
-  transition: 0.2s ease-in-out;
+  transition: 0.5s ease-in-out;
 }
-
 input.search-bar {
   border: none;
   outline: none;
   padding: 0.4em 1em;
   border-radius: 24px;
-  background: #7c7c7c2b;
+  background-color: #222;
   color: white;
   font-family: inherit;
   font-size: 105%;
   width: calc(100% - 100px);
+  transition: 500ms;
 }
-
 button:hover {
   background: #7c7c7c6b;
 }
-
 h1.temp {
   margin: 0;
   margin-bottom: 0.4em;
 }
-
 .flex {
   display: flex;
   align-items: center;
 }
-
 .description {
   text-transform: capitalize;
   margin-left: 8px;
 }
-
 .weather.loading {
   visibility: hidden;
   max-height: 20px;
   position: relative;
 }
-
 .weather.loading:after {
   visibility: visible;
-  content: "Loading...";
+  content: "Enter City Name...";
   color: white;
   position: absolute;
   top: 0;
-  left: 20px;
+  left: 110px;
+  opacity: 0.7;
 }
-
+.weather{
+  margin-top: 20px;
+}
 .suggestionsBox{
-  /* display: none; */
   position: absolute;
   z-index: 1;
   display: none;
@@ -101,7 +94,7 @@ h1.temp {
 }
 .suggestionUl{
   width: 300px;
-  height: 50vh;
+  max-height: 50vh;
   list-style: none;
   background-color: #222;
   align-items: center;
@@ -109,6 +102,7 @@ h1.temp {
   padding: 10px;
   border-radius: 10px;
   overflow-y: scroll;
+  transition: 1s;
 }
 .ulItems{
   margin-top: 8px;
@@ -121,40 +115,20 @@ h1.temp {
   cursor: pointer;
   color: white;
 }
-
 .active-block{
   display: block;
 }
-
 .weatherDescriptionBox{
   display: block;
   width: 100%;
 }
-
 .day{
   transition: all 1s linear;
   background-image: radial-gradient(circle, #feffd2, #fbf1b9, #fbe1a1, #fcd18b, #ffbf78);
   color: #333 !important;
 }
-
 .night{
   transition: all 1s linear;
   background-image: radial-gradient(circle, #344c64, #366279, #3a788a, #448f98, #57a6a1);
   color: #000 !important;
-}
-
-input.nightInput , textarea{
-  transition: all 1s linear;
-  background-image: radial-gradient(circle, #9290c3, #7370a7, #56528b, #39356f, #1b1a55);
-  color: #000 !important;
-}
-
-button.nightInput{
-  background-image: radial-gradient(circle, #9290c3, #7370a7, #56528b, #39356f, #1b1a55);
-  color: #000 !important;
-}
-
-.ulItems.nightInput{
-  background-image: radial-gradient(circle, #9290c3, #7370a7, #56528b, #39356f, #1b1a55);
-  color: white !important;
 }

@@ -1,4 +1,5 @@
 let cities = null
+let icon = null
 
 
 let $ = document
@@ -10,21 +11,17 @@ const weatherInfoBox = $.getElementById('weatherInfoBox')
 const weatherLoadingBox = $.querySelector('.weather')
 const cardBox = $.querySelector('.card')
 
-let icon = null
 
 
 
 searchBar.addEventListener('keyup', async () => {
-  cardBox.classList.remove('day')
-  cardBox.classList.remove('night')
   await countryCityNames();
-
   suggestionUl.innerHTML = '';
-  weatherInfoBox.classList.add('loading');
-
+  cardBox.className = 'card'
   if (searchBar.value) {
-    suggestionUl.style.display = 'inline-block';
-    suggestionsBox.classList.add('active-block');
+    suggestionsBox.classList.remove('display-none')
+    suggestionUl.classList.add('active-block'); //working
+    suggestionsBox.classList.add('active-block'); //working
 
     let searchValue = searchBar.value.toLowerCase();
 
@@ -41,21 +38,26 @@ searchBar.addEventListener('keyup', async () => {
       suggestionUl.insertAdjacentHTML('beforeend', `<li class="ulItems" onclick="searchBoxFiller(event)">${city.city}</li>`);
     });
   } else {
+    suggestionUl.classList.remove('active-block');
     suggestionsBox.classList.remove('active-block');
+    weatherInfoBox.classList.add('loading');
+    console.log('input is empty');
   }
 });
 
 
 searchBtn.addEventListener('click', function () {
   showWeather()
-  suggestionUl.style.display = 'none'
+  // suggestionUl.style.display = 'none'
 })
 
-document.body.addEventListener('keypress', (event) => {
+window.addEventListener('keyup', (event) => {
   if (event.key === 'Enter') {
+    console.log('test');
+    
     showWeather()
-    suggestionUl.classList.add('display-none')
-    suggestionsBox.classList.remove('active-block')
+    // suggestionsBox.className = ''
+    // .classList.add('active-block')
   }
 })
 
@@ -68,7 +70,7 @@ async function countryCityNames() {
 }
 
 async function showWeather() {
-
+  
   weatherInfoBox.innerHTML = ''
   if (searchBar.value) {
 
@@ -88,13 +90,9 @@ async function showWeather() {
             if (data.weather[0].icon.includes('n') === true) {
               cardBox.classList.remove('day')
               cardBox.classList.add('night')
-              searchBar.classList.add('nightInput')
-              searchBtn.classList.add('nightInput')
             } else {
-              searchBar.classList.remove('nightInput')
               cardBox.classList.remove('night')
               cardBox.classList.add('day')
-              searchBtn.classList.remove('nightInput')
             }
 
             weatherInfoBox.classList.remove('loading')
@@ -122,7 +120,7 @@ async function showWeather() {
           </div>
           <div class="humidity">Humidity: ${data.main.humidity}%</div>
           <div class="wind">Wind speed: ${data.wind.speed} km/h</div>`)
-            suggestionUl.innerHTML = ''
+            suggestionsBox.classList.add('display-none')
             searchBar.value = ''
           })
       })
@@ -139,7 +137,7 @@ function searchBoxFiller(event) {
   let selectedCity = event.target.innerHTML
   searchBar.value = selectedCity
 
-  suggestionsBox.classList.remove('active-block')
+  // suggestionsBox.classList.remove('active-block')
   showWeather()
 
 }
